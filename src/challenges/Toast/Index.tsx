@@ -1,14 +1,16 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Component from "./Component"
 import type { Icon } from "./Component"
 import { v4 as uuidv4 } from "uuid"
 import Select from "./Select"
+import autoAnimate from "@formkit/auto-animate"
 
 type Toast = {
   id?: string
   color: string
   icon: Icon
   message: string
+  isVisible: boolean
 }
 
 export type Option = {
@@ -22,22 +24,31 @@ const Index = () => {
     color: "bg-white",
     icon: "Check",
     message: "This is new toast!",
+    isVisible: true,
   })
+
+  const toastListParent = useRef(null)
+
+  useEffect(() => {
+    toastListParent.current && autoAnimate(toastListParent.current)
+  }, [toastListParent])
 
   return (
     <div>
-      <div className="absolute top-8 left-8">
+      <div ref={toastListParent} className="absolute top-8 left-8">
         {toastList.map((t) => {
           return (
-            <Component
-              key={t.id}
-              classes={`${t.color}`}
-              message={t.message}
-              icon={t.icon}
-              hideToast={() =>
-                setToastList(toastList.filter((to) => to.id !== t.id))
-              }
-            />
+            t.isVisible && (
+              <Component
+                key={t.id}
+                classes={`${t.color}`}
+                message={t.message}
+                icon={t.icon}
+                hideToast={() =>
+                  setToastList(toastList.filter((to) => to.id !== t.id))
+                }
+              />
+            )
           )
         })}
       </div>
@@ -75,17 +86,33 @@ const Index = () => {
       </div>
       <div
         className="px-4 py-2 border border-gray-400 rounded cursor-pointer"
-        onClick={() =>
+        onClick={() => {
+          const uuid = uuidv4()
           setToastList([
             ...toastList,
             {
-              id: uuidv4(),
+              id: uuid,
               color: newToast.color,
               icon: newToast.icon,
               message: newToast.message,
+              isVisible: true,
             },
           ])
-        }
+          // setTimeout(() => {
+          //   setToastList(
+          //     toastList.map((t) => {
+          //       if (t.id === uuid) {
+          //         return {
+          //           ...t,
+          //           isVisible: false,
+          //         }
+          //       } else {
+          //         return t
+          //       }
+          //     })
+          //   )
+          // }, 5000)
+        }}
       >
         New Toast
       </div>

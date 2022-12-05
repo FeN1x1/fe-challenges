@@ -15,8 +15,12 @@ const Select = ({
       onChange={onChange}
       className="px-4 py-2 rounded mb-4"
     >
-      {options.map((o) => {
-        return <option value={o.value}>{o.name}</option>
+      {options.map((o, idx) => {
+        return (
+          <option key={idx} value={o.value}>
+            {o.name}
+          </option>
+        )
       })}
     </select>
   )

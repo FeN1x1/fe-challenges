@@ -5,6 +5,7 @@ import GuessTheNumber from "./challenges/GuessTheNumber"
 import TelephoneFormatter from "./challenges/TelephoneFormatter"
 import Counter from "./challenges/Counter"
 import { default as Toast } from "./challenges/Toast/Index"
+import PasswordStrength from "./challenges/PasswordStrength"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,7 +25,8 @@ function App() {
         {/* <GuessTheNumber /> */}
         {/* <Counter /> */}
         {/* <TelephoneFormatter /> */}
-        <Toast />
+        {/* <Toast /> */}
+        <PasswordStrength />
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
