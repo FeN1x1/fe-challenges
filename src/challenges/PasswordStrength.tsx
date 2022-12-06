@@ -1,15 +1,7 @@
-import { useEffect, useRef, useState } from "react"
-
-import autoAnimate from "@formkit/auto-animate"
+import { useState } from "react"
 
 const PasswordStrength = () => {
   const [password, setPassword] = useState("")
-
-  const barRef = useRef(null)
-
-  useEffect(() => {
-    barRef.current && autoAnimate(barRef.current)
-  }, [barRef])
 
   const useBarLength = () => {
     if (password.length > 0 && password.length <= 4) {

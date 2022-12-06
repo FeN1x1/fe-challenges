@@ -6,6 +6,7 @@ import TelephoneFormatter from "./challenges/TelephoneFormatter"
 import Counter from "./challenges/Counter"
 import { default as Toast } from "./challenges/Toast/Index"
 import PasswordStrength from "./challenges/PasswordStrength"
+import StarRating from "./challenges/StarRating"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,7 +27,8 @@ function App() {
         {/* <Counter /> */}
         {/* <TelephoneFormatter /> */}
         {/* <Toast /> */}
-        <PasswordStrength />
+        {/* <PasswordStrength /> */}
+        <StarRating />
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
